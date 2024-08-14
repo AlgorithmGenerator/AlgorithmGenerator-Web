@@ -57,7 +57,6 @@ const ButtonContainer2 = styled(animated.div)`
   }
 `;
 
-
 const ModalBackground = styled.div`
   position: fixed;
   top: 0;
@@ -110,10 +109,10 @@ const CancelButton = styled.button`
 `;
 
 const HoverableImg = styled(StyledImg)`
-  transition: opacity 0.3s ease;  // 부드러운 애니메이션 추가
+  transition: opacity 0.3s ease;
 
   &:hover {
-    opacity: 0.6;  // 투명도 20%로 설정
+    opacity: 0.6;
   }
 `;
 
@@ -122,13 +121,13 @@ const MoimList = () => {
     const defaultImage = 'cat.png';
 
     const [components, setComponents] = useState([
-        { img: 'ex_cat1.png', text: '코노모1', path: '/conomo' },
-        { img: '', text: '사과모임', path: '/applemeeting' }
+        { img: 'ex_cat1.png', text: '코노모1', moimnumber: 1 },
+        { img: '', text: '사과모임', moimnumber: 2 }
     ]);
 
     const [showModal, setShowModal] = useState(false);
-    const [modalContent, setModalContent] = useState('');  // 현재 모달의 상태를 저장
-    const [inputValue, setInputValue] = useState('');  // 입력 필드 값 저장
+    const [modalContent, setModalContent] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
     const transitions = useTransition(components, {
         from: { opacity: 0, transform: 'scale(0.8)' },
@@ -141,14 +140,15 @@ const MoimList = () => {
         setComponents([...components, newComponent]);
     };
 
-    const handleClick = (path) => {
-        navigate(path);
+    const handleClick = (moimnumber) => {
+        console.log(moimnumber);  // 콘솔에 moimnumber 출력
+        navigate(`/mainmoimpage`, { state: { moimnumber } });
     };
 
     const handleAddClick = () => {
         setShowModal(true);
-        setModalContent('options'); // 옵션 선택 모달을 띄우기 위한 상태
-        setInputValue('');  // input 필드 초기화
+        setModalContent('options');
+        setInputValue('');
     };
 
     const handleOptionSelect = (option) => {
@@ -164,9 +164,9 @@ const MoimList = () => {
         const newComponent = {
             img: '',
             text: modalContent === 'join' ? `참여한 모임 ${components.length + 1}` : inputValue,
-            path: `/new-meeting-${components.length + 1}`
+            moimnumber: components.length + 1
         };
-        setTimeout(() => addComponent(newComponent), 200); // 200ms 후 모임 버튼 추가됨
+        setTimeout(() => addComponent(newComponent), 200);
     };
 
     const handleCancel = () => {
@@ -176,7 +176,7 @@ const MoimList = () => {
     return (
         <RowContainer>
             {transitions((style, component, t, index) => (
-                <AnimatedColumn key={index} style={style} onClick={() => handleClick(component.path)}>
+                <AnimatedColumn key={index} style={style} onClick={() => handleClick(component.moimnumber)}>
                     <HoverableImg
                         src={component.img ? component.img : defaultImage}
                         width='100%'
