@@ -9,7 +9,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
-  min-height: 4vh;
+  height: 6vh;
   z-index: 99;
   display: flex;
   flex-direction: row;
@@ -18,7 +18,19 @@ const HeaderContainer = styled.header`
   padding-left: 10px;
   padding-right: 10px;
   background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+`;
+
+const Button = styled.button`
+border: 1px solid #626262;
+border-radius: 0.5rem;
+background-color: transparent;
+
+width: 4rem;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 0.5rem;
 `;
 
 export default function Header() {
@@ -26,9 +38,11 @@ export default function Header() {
 
     return (
         <HeaderContainer>
-            <CustomRow width='97%' justifyContent='space-between'>
+            <CustomRow width='100%' justifyContent='space-between'>
                 <CustomRow width='100%' justifyContent='flex-end'>
-                    <CustomFont color='black' fontWeight='bold' font='1rem'>여기는 헤더</CustomFont>
+                    <Button>
+                        <CustomFont color='#626262' font='1rem'>MY</CustomFont>
+                    </Button>
                 </CustomRow>
             </CustomRow>
         </HeaderContainer>

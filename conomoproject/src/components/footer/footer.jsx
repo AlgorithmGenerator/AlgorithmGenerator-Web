@@ -12,12 +12,10 @@ const NaviContainer = styled.footer`
   width: 100%;
   height: 10vh;
   background-color: #D9D9D9;
-  position: fixed;
+  // position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 1000;
   pointer-events: auto;
-  margin-top: 2vh;
 `;
 
 const Footer = () => {
