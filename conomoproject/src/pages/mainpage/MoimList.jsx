@@ -109,6 +109,14 @@ const CancelButton = styled.button`
   cursor: pointer;
 `;
 
+const HoverableImg = styled(StyledImg)`
+  transition: opacity 0.3s ease;  // 부드러운 애니메이션 추가
+
+  &:hover {
+    opacity: 0.6;  // 투명도 20%로 설정
+  }
+`;
+
 const MoimList = () => {
     const navigate = useNavigate();
     const defaultImage = 'cat.png';
@@ -169,7 +177,7 @@ const MoimList = () => {
         <RowContainer>
             {transitions((style, component, t, index) => (
                 <AnimatedColumn key={index} style={style} onClick={() => handleClick(component.path)}>
-                    <StyledImg
+                    <HoverableImg
                         src={component.img ? component.img : defaultImage}
                         width='100%'
                         height='20vh'
