@@ -6,6 +6,7 @@ import LoginPage from './components/header/login';
 import SignupPage from './components/header/signup';
 import MyPage from './components/header/mypage';
 import MainMoimPage from './pages/mainpage/MoimSpace/MainMoimPage';
+import ManageMoimPage from './pages/mainpage/MoimSpace/managemoim/managemoimpage';
 
 const AppRouter = () => {
     return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
                     <Route path='/signuppage' element={<SignupPage />} />
                     <Route path='/mypage' element={<MyPage />} />
                     <Route path='/mainmoimpage' element={<MainMoimPage />} />
+                    <Route path='/managemoimpage' element={<ManageMoimPage />} />
                 </Route>
             </Routes>
         </Router>
