@@ -31,16 +31,21 @@ display: flex;
 align-items: center;
 justify-content: center;
 padding: 0.5rem;
+cursor: pointer;
 `;
 
 export default function Header() {
     const navigate = useNavigate();
 
+    const GoMy = () => {
+        navigate('/mypage');
+    }
+
     return (
         <HeaderContainer>
             <CustomRow width='100%' justifyContent='space-between'>
                 <CustomRow width='100%' justifyContent='flex-end'>
-                    <Button>
+                    <Button onClick={GoMy}>
                         <CustomFont color='#626262' font='1rem'>MY</CustomFont>
                     </Button>
                 </CustomRow>
