@@ -16,8 +16,8 @@ const Container = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 200px;
-  height: 150px;
+  width: 25rem;
+  height: 13rem;
   border-radius: 8px;
   object-fit: cover;
 `;
@@ -82,7 +82,7 @@ border-radius: 0.5rem;
 padding: 0.5rem;
 background-color: transparent;
 width: 100%;
-min-height: 30vh;
+min-height: 40vh;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -127,25 +127,34 @@ const ManageMoimPage = () => {
                 </CustomRow>
                 <CustomRow width='100%' alignItems='center' justifyContent='space-between' gap='1rem'>
                     <Grid>
-                        <CustomColumn width='50%' alignItems='center' justifyContent='center' gap='1rem'>
-                            <CustomFont color='black' font='1rem' fontWeight='bold'>모임 프로필 추가/변경하기</CustomFont>
-                            <ProfileImage src={profileImage} alt="Current Profile" />
-                            <input
-                                type="file"
-                                accept="image/*"
-                                style={{ display: 'none' }}
-                                id="profile-upload"
-                                onChange={handleProfileChange}
-                            />
-                            <Button as="label" htmlFor="profile-upload">
-                                변경하기
-                            </Button>
+                        <CustomColumn width='90%' height='37vh' alignItems='center' justifyContent='space-between' gap='0.5rem'>
+                            <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+                                <CustomFont color='black' font='1.2rem' fontWeight='bold'>모임 프로필 추가/변경하기</CustomFont>
+                            </CustomRow>
+
+                            <CustomColumn width='100%' alignItems='flex-end' justifyContent='center' gap='0.2rem'>
+                                <ProfileImage src={profileImage} alt="Current Profile" />
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    style={{ display: 'none' }}
+                                    id="profile-upload"
+                                    onChange={handleProfileChange}
+                                />
+                                <CustomRow width='100%' alignItems='center' justifyContent='flex-end'>
+                                    <Button as="label" htmlFor="profile-upload">
+                                        <CustomFont color='black' font='1rem' fontWeight='bold'>변경하기</CustomFont>
+                                    </Button>
+                                </CustomRow>
+                            </CustomColumn>
                         </CustomColumn>
                     </Grid>
 
                     <Grid>
-                        <CustomColumn width='50%' alignItems='center' justifyContent='center' gap='1rem'>
-                            <CustomFont color='black' font='1rem' fontWeight='bold'>랜덤 문제 출제하기</CustomFont>
+                        <CustomColumn width='90%' height='37vh' alignItems='center' justifyContent='space-between' gap='1rem'>
+                            <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+                                <CustomFont color='black' font='1.2rem' fontWeight='bold'>랜덤 문제 출제하기</CustomFont>
+                            </CustomRow>
                             <Button
                                 color="#ff6b6b"
                                 onClick={() => {
@@ -175,8 +184,11 @@ const ManageMoimPage = () => {
                 <CustomRow width='100%' alignItems='center' justifyContent='space-between' gap='1rem'>
 
                     <Grid>
-                        <CustomColumn width='50%' alignItems='center' justifyContent='center' gap='1rem'>
-                            <CustomFont color='black' font='1rem' fontWeight='bold'>출제/제출 주기 변경</CustomFont>
+                        <CustomColumn width='90%' height='37vh' alignItems='center' justifyContent='space-between' gap='1rem'>
+                            <CustomColumn width='100%' alignItems='flex-start' justifyContent='center' gap='0.2rem'>
+                                <CustomFont color='black' font='1.2rem' fontWeight='bold'>출제/제출 주기 변경</CustomFont>
+                                <CustomFont color='black' font='0.8rem'>기본 설정 주기는 7일입니다.</CustomFont>
+                            </CustomColumn>
 
                             <Button
                                 onClick={() => {
@@ -199,18 +211,24 @@ const ManageMoimPage = () => {
                             >
                                 <CustomFont color='black' font='1rem'>변경하기</CustomFont>
                             </Button>
-                            <CustomFont color='black' font='0.8rem'>기본 설정 주기는 7일입니다.</CustomFont>
+
                         </CustomColumn>
                     </Grid>
 
                     <Grid>
-                        <CustomColumn width='50%' alignItems='center' justifyContent='center' gap='1rem'>
-                            <CustomFont color='black' font='1rem' fontWeight='bold'>모임 활동 상태 변경</CustomFont>
-                            <CustomFont color='black' font='0.9rem' fontWeight='bold'>현재 상태는 {toggleActive ? 'ON' : 'OFF'}</CustomFont>
-                            <ToggleButtonContainer onClick={handleToggleClick}>
-                                <ToggleButtonCircle isActive={toggleActive} />
-                            </ToggleButtonContainer>
-                            <CustomFont color='black' font='0.8rem'>시험기간, 휴식기간에는 출제/제출을 잠깐 멈춥니다.</CustomFont>
+                        <CustomColumn width='90%' height='37vh' alignItems='center' justifyContent='space-between' gap='1rem'>
+                            <CustomColumn width='100%' alignItems='flex-start' justifyContent='center' gap='0.2rem'>
+                                <CustomFont color='black' font='1.2rem' fontWeight='bold'>모임 활동 상태 변경</CustomFont>
+                                <CustomFont color='black' font='0.8rem'>시험기간, 휴식기간에는 출제/제출을 잠깐 멈춥니다.</CustomFont>
+                            </CustomColumn>
+
+                            <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='0.5rem'>
+                                <CustomFont color='black' font='0.9rem' fontWeight='bold'>현재 상태는 {toggleActive ? 'ON' : 'OFF'}</CustomFont>
+                                <ToggleButtonContainer onClick={handleToggleClick}>
+                                    <ToggleButtonCircle isActive={toggleActive} />
+                                </ToggleButtonContainer>
+                            </CustomColumn>
+
                         </CustomColumn>
                     </Grid>
                 </CustomRow>
