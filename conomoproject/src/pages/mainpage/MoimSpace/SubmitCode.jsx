@@ -124,7 +124,7 @@ print(count)`,
                 {code}
               </CodeContainer>
             ) : (
-              <ButtonContainer onClick={() => navigate('/writecode')}>
+              <ButtonContainer onClick={() => navigate('/writecodepage')}>
                 <CustomFont color='black' font='2rem' fontWeight='bold'>+</CustomFont>
                 <CustomFont color='black' font='1rem'>제출하기</CustomFont>
               </ButtonContainer>
