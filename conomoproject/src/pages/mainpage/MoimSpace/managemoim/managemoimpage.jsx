@@ -20,6 +20,12 @@ const ProfileImage = styled.img`
   height: 13rem;
   border-radius: 8px;
   object-fit: cover;
+
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 const Button = styled.button`
@@ -31,6 +37,12 @@ const Button = styled.button`
   border: none;
   border-radius: 4px;
   cursor: pointer;
+
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 const ModalBackground = styled.div`
@@ -105,6 +117,23 @@ padding-left: 0.5rem;
 padding-right: 0.5rem;
 `;
 
+const NumInput = styled.input.attrs({
+    placeholder: '숫자만 입력이 가능합니다.',
+})`
+  width: 80%;
+  height: 1rem;
+
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: #D9D9D9;
+    font-size: 0.8rem;
+  }
+`;
+
 const ManageMoimPage = () => {
     const [profileImage, setProfileImage] = useState('cat.png');
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -153,6 +182,7 @@ const ManageMoimPage = () => {
                                 <CustomColumn width='90%' height='37vh' alignItems='center' justifyContent='center' gap='0.5rem'>
 
                                     <CustomColumn width='100%' alignItems='flex-end' justifyContent='center' gap='0.2rem'>
+
                                         <ProfileImage src={profileImage} alt="Current Profile" />
                                         <input
                                             type="file"
@@ -195,16 +225,18 @@ const ManageMoimPage = () => {
                                         onClick={() => {
                                             setModalContent(
                                                 <>
-                                                    <CustomFont color='black' font='1rem'>정말로 출제하시겠습니까?</CustomFont>
-                                                    <Button
-                                                        color="#ff6b6b"
-                                                        onClick={() =>
-                                                            handleModalConfirm('출제가 완료되었습니다!')
-                                                        }
-                                                    >
-                                                        출제하기
-                                                    </Button>
-                                                    <Button onClick={handleModalClose}>취소</Button>
+                                                    <CustomFont color='black' font='1.2rem' fontWeight='bold'>정말로 출제하시겠습니까?</CustomFont>
+                                                    <CustomRow width='100%' alignItems='center' justifyContent='space-between' gap='0.5rem'>
+                                                        <Button
+                                                            color="#ff6b6b"
+                                                            onClick={() =>
+                                                                handleModalConfirm('출제가 완료되었습니다!')
+                                                            }
+                                                        >
+                                                            출제하기
+                                                        </Button>
+                                                        <Button onClick={handleModalClose}>취소</Button>
+                                                    </CustomRow>
                                                 </>
                                             );
                                             setIsModalOpen(true);
@@ -229,18 +261,26 @@ const ManageMoimPage = () => {
                                 <Button
                                     onClick={() => {
                                         setModalContent(
-                                            <>
-                                                <CustomFont color='black' font='2rem' fontWeight='bold'>변경하실 주기를 입력하세요.</CustomFont>
-                                                <input type="number" placeholder="일" />
-                                                <Button
-                                                    onClick={() =>
-                                                        handleModalConfirm('주기가 변경되었습니다!')
-                                                    }
-                                                >
-                                                    확인
-                                                </Button>
-                                                <Button onClick={handleModalClose}>취소</Button>
-                                            </>
+                                            <CustomColumn width='100%' height='18vh' alignItems='center' justifyContent='space-between' gap='1.5rem'>
+                                                <CustomFont color='black' font='1.2rem' fontWeight='bold'>변경하실 주기를 입력하세요.</CustomFont>
+
+                                                <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='0.5rem'>
+                                                    <CustomRow width='100%' alignItems='center' justifyContent='center' gap='0.5rem'>
+                                                        <NumInput />
+                                                        <CustomFont color='black' font='1rem'>일</CustomFont>
+                                                    </CustomRow>
+                                                    <CustomRow width='90%' alignItems='center' justifyContent='space-between' gap='0.5rem'>
+                                                        <Button
+                                                            onClick={() =>
+                                                                handleModalConfirm('주기가 변경되었습니다!')
+                                                            }
+                                                        >
+                                                            확인
+                                                        </Button>
+                                                        <Button onClick={handleModalClose}>취소</Button>
+                                                    </CustomRow>
+                                                </CustomColumn>
+                                            </CustomColumn>
                                         );
                                         setIsModalOpen(true);
                                     }}
