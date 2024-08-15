@@ -64,7 +64,7 @@ const MemberHistoryPage = () => {
   ];
 
   const goDetail = (datenumber) => {
-    navigate('/historydetailpage', { state: { datenumber } });
+    navigate('/submitcodepage', { state: { datenumber } });
   }
 
   return (

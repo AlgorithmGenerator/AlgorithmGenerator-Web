@@ -26,6 +26,7 @@ const PageContainer = styled(ContainerCenter)`
 
 const Button = styled.button`
 width: 8rem;
+border: none;
   border-radius: 0.5rem;
   background-color: black;
   display: flex;
@@ -33,6 +34,12 @@ width: 8rem;
   justify-content: center;
   padding: 0.5rem;
   cursor: pointer;
+
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.6;
+  }
 `;
 
 const AskDiv = styled.div`
@@ -93,6 +100,12 @@ padding: 0.4rem;
 
 width: 4rem;
 cursor: pointer;
+
+transition: opacity 0.3s ease;
+
+&:hover {
+  opacity: 0.6;
+}
 `;
 
 const MainMoimPage = () => {
