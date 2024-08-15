@@ -70,6 +70,20 @@ const ButtonContainer = styled.div`
   cursor: pointer;
 `;
 
+const DetailButton = styled.button`
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
 const SubmitCodePage = () => {
   const navigate = useNavigate();
 
@@ -120,9 +134,14 @@ print(count)`,
           <CodeBlock key={index}>
             <CustomFont color='black' font='1.5rem'>{index + 1}번</CustomFont>
             {code ? (
-              <CodeContainer>
-                {code}
-              </CodeContainer>
+              <>
+                <CodeContainer>
+                  {code}
+                </CodeContainer>
+                <DetailButton onClick={() => navigate('/detailcodepage')}>
+                  상세보기
+                </DetailButton>
+              </>
             ) : (
               <ButtonContainer onClick={() => navigate('/writecodepage')}>
                 <CustomFont color='black' font='2rem' fontWeight='bold'>+</CustomFont>
