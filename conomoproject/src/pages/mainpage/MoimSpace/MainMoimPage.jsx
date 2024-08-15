@@ -7,6 +7,7 @@ import CustomFont from '../../../components/container/CustomFont';
 import { useNavigate } from 'react-router-dom';
 
 // 각 모임 클릭 시 바로 보이는, 모임의 메인화면입니당 
+// 피그마의 '화면4) 모임 입장 시 메인화면'에 해당함 
 
 const ContainerCenter = styled.div`
   display: flex;

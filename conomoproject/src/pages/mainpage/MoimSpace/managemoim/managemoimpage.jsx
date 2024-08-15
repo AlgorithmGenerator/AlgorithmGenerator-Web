@@ -10,6 +10,8 @@ import MoimOnOff from './moimonoff';
 import MakePeroid from './makeperiod';
 import MakeProblem from './makeproblem';
 
+// 피그마의 '화면10) 모임 관리 페이지'에 해당함 
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;

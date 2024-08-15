@@ -6,6 +6,7 @@ import CustomRow from '../../../components/container/CustomRow';
 import CustomFont from '../../../components/container/CustomFont';
 
 // 각 팀원의 회차별 제출기록 페이지입니다
+// 피그마의 '화면5) 제출기록목록화면'에 해당함 
 
 const ContainerCenter = styled.div`
   display: flex;

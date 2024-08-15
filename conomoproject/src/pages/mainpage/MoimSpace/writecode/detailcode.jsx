@@ -9,6 +9,7 @@ import ProblemBanner from './problembanner';
 
 // 코드 상세보기 클릭 시 이동하는
 // 각 문제별 코드들 + 인증사진 + 느낀점 보기 페이지입니다 (제출/수정x)
+// 피그마의 '화면7) 각 회차 상세내용 보기'에 해당함 
 
 const ContainerCenter = styled.div`
   display: flex;

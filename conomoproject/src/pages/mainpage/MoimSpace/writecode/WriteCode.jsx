@@ -9,6 +9,7 @@ import ProblemBanner from './problembanner';
 
 // 내가 푼 코드를 제출하는 화면입니다.
 // 입력한 코드 (여러 개), 첨부한 인증사진, 느낀 점 -> 한번에 서버로 보내는 경우 대비 일부러 컴포넌트 분리하지 않았습니당 
+// 피그마의 '화면8) 각 회차 상세내역 수정'에 해당함 
 
 const ContainerCenter = styled.div`
   display: flex;
