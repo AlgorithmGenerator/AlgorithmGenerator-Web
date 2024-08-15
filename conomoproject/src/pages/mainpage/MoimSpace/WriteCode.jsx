@@ -44,7 +44,7 @@ const CodeContainer = styled.div`
   margin-top: 1rem;
   white-space: pre-wrap;
   width: 100%;
-  transition: all 0.5s ease; /* 부드러운 전환을 위한 애니메이션 */
+  transition: all 0.5s ease;
 
   /* 스크롤바 스타일 */
   &::-webkit-scrollbar {
@@ -86,12 +86,12 @@ const ButtonRow = styled.div`
   gap: 1rem;
   width: 100%;
   margin-top: 1rem;
-  overflow-x: auto; /* 가로 스크롤 */
-  white-space: nowrap; /* 줄바꿈 방지 */
+  overflow-x: auto;
+  white-space: nowrap;
 
   /* 스크롤바 스타일 */
   &::-webkit-scrollbar {
-    height: 12px; /* 세로 스크롤바와의 높이 균형을 맞추기 위해 설정 */
+    height: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -211,7 +211,7 @@ print(count)
                 </ContentContainer>
 
                 <CustomRow width='100%' alignItems='center' justifyContent='flex-end' gap='1rem'>
-                    <Button onClick={() => navigate('/editcode')}>수정(제출)하기</Button>
+                    <Button onClick={() => navigate('/editcodepage')}>수정(제출)하기</Button>
                     <Button onClick={() => window.location.href = 'https://www.acmicpc.net/'}>백준으로</Button>
                 </CustomRow>
             </PageContainer>

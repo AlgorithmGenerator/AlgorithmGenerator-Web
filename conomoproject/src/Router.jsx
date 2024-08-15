@@ -10,6 +10,7 @@ import ManageMoimPage from './pages/mainpage/MoimSpace/managemoim/managemoimpage
 import MemberHistoryPage from './pages/mainpage/MoimSpace/MemberHistory';
 import SubmitCodePage from './pages/mainpage/MoimSpace/SubmitCode';
 import WriteCodePage from './pages/mainpage/MoimSpace/WriteCode';
+import EditCodePage from './pages/mainpage/MoimSpace/editcode';
 
 const AppRouter = () => {
     return (
@@ -25,6 +26,7 @@ const AppRouter = () => {
                     <Route path='/memberhistorypage' element={<MemberHistoryPage />} />
                     <Route path='/submitcodepage' element={<SubmitCodePage />} />
                     <Route path='/writecodepage' element={<WriteCodePage />} />
+                    <Route path='/editcodepage' element={<EditCodePage />} />
                 </Route>
             </Routes>
         </Router>
