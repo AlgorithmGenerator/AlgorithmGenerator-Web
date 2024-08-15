@@ -5,6 +5,8 @@ import CustomColumn from '../../../components/container/CustomColumn';
 import CustomRow from '../../../components/container/CustomRow';
 import CustomFont from '../../../components/container/CustomFont';
 
+// 각 팀원의 회차별 제출기록 페이지입니다
+
 const ContainerCenter = styled.div`
   display: flex;
   flex-direction: column;

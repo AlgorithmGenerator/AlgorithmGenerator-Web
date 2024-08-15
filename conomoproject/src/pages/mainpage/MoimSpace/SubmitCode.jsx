@@ -5,6 +5,8 @@ import CustomColumn from '../../../components/container/CustomColumn';
 import CustomRow from '../../../components/container/CustomRow';
 import CustomFont from '../../../components/container/CustomFont';
 
+// '답안 제출하기' 버튼 클릭 시 보이는, 이번 주 문제에 대한 나의 제출내역 페이지입니다
+
 const ContainerCenter = styled.div`
   display: flex;
   flex-direction: column;

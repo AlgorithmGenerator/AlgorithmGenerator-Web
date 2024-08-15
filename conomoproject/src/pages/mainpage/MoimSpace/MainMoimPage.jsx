@@ -6,6 +6,8 @@ import CustomRow from '../../../components/container/CustomRow';
 import CustomFont from '../../../components/container/CustomFont';
 import { useNavigate } from 'react-router-dom';
 
+// 각 모임 클릭 시 바로 보이는, 모임의 메인화면입니당 
+
 const ContainerCenter = styled.div`
   display: flex;
   flex-direction: column;

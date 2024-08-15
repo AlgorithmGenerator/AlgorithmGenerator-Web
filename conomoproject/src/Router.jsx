@@ -9,8 +9,8 @@ import MainMoimPage from './pages/mainpage/MoimSpace/MainMoimPage';
 import ManageMoimPage from './pages/mainpage/MoimSpace/managemoim/managemoimpage';
 import MemberHistoryPage from './pages/mainpage/MoimSpace/MemberHistory';
 import SubmitCodePage from './pages/mainpage/MoimSpace/SubmitCode';
-import WriteCodePage from './pages/mainpage/MoimSpace/WriteCode';
-import DetailCodePage from './pages/mainpage/MoimSpace/detailcode';
+import WriteCodePage from './pages/mainpage/MoimSpace/writecode/WriteCode';
+import DetailCodePage from './pages/mainpage/MoimSpace/writecode/detailcode';
 
 const AppRouter = () => {
     return (

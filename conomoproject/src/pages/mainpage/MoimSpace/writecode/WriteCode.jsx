@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import CustomColumn from '../../../components/container/CustomColumn';
-import CustomRow from '../../../components/container/CustomRow';
-import CustomFont from '../../../components/container/CustomFont';
-import StyledImg from '../../../components/container/StyledImg';
+import CustomColumn from '../../../../components/container/CustomColumn';
+import CustomRow from '../../../../components/container/CustomRow';
+import CustomFont from '../../../../components/container/CustomFont';
+import StyledImg from '../../../../components/container/StyledImg';
+import ProblemBanner from './problembanner';
+
+// 내가 푼 코드를 제출하는 화면입니다.
+// 입력한 코드 (여러 개), 첨부한 인증사진, 느낀 점 -> 한번에 서버로 보내는 경우 대비 일부러 컴포넌트 분리하지 않았습니당 
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -214,23 +218,7 @@ const WriteCodePage = () => {
     return (
         <ContainerCenter>
             <PageContainer>
-                <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='1rem'>
-                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                        <CustomFont color='black' font='2rem' fontWeight='bold'>문제 제목</CustomFont>
-                    </CustomRow>
-                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                        <CustomFont color='black' font='1.5rem'>코테 제목1</CustomFont>
-                    </CustomRow>
-                </CustomColumn>
-
-                <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='1rem'>
-                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                        <CustomFont color='black' fontWeight='bold' font='2rem'>문제 설명</CustomFont>
-                    </CustomRow>
-                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                        <CustomFont color='black' font='1rem'>코테 본문1</CustomFont>
-                    </CustomRow>
-                </CustomColumn>
+                <ProblemBanner />
 
                 <ButtonRow>
                     <Button onClick={handleAddSolution}>+ 풀이추가</Button>

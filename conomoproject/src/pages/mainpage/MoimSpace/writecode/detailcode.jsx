@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import CustomColumn from '../../../components/container/CustomColumn';
-import CustomRow from '../../../components/container/CustomRow';
-import CustomFont from '../../../components/container/CustomFont';
-import StyledImg from '../../../components/container/StyledImg';
+import CustomColumn from '../../../../components/container/CustomColumn';
+import CustomRow from '../../../../components/container/CustomRow';
+import CustomFont from '../../../../components/container/CustomFont';
+import StyledImg from '../../../../components/container/StyledImg';
+import ProblemBanner from './problembanner';
+
+// 코드 상세보기 클릭 시 이동하는
+// 각 문제별 코드들 + 인증사진 + 느낀점 보기 페이지입니다 (제출/수정x)
 
 const ContainerCenter = styled.div`
   display: flex;
@@ -63,7 +67,7 @@ const CodeContainer = styled.div`
 `;
 
 const ImageContainer = styled.img`
-  width: 100%;
+  width: 90%;
   margin-top: 2rem;
 `;
 
@@ -71,7 +75,7 @@ const ContentContainer = styled.div`
   background-color: #f1f1f1;
   padding: 1rem;
   border-radius: 8px;
-  width: 100%;
+  width: 90%;
   gap: 2rem;
 
   display: flex;
@@ -173,31 +177,16 @@ print(count)
   return (
     <ContainerCenter>
       <PageContainer>
-        <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='1rem'>
-          <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-            <CustomFont color='black' font='2rem' fontWeight='bold'>문제 제목</CustomFont>
-          </CustomRow>
-          <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-            <CustomFont color='black' font='1.5rem'>코테 제목1</CustomFont>
-          </CustomRow>
-        </CustomColumn>
+        <ProblemBanner />
 
-        <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='1rem'>
-          <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-            <CustomFont color='black' fontWeight='bold' font='2rem'>문제 설명</CustomFont>
-          </CustomRow>
-          <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-            <CustomFont color='black' font='1rem'>코테 본문1</CustomFont>
-          </CustomRow>
-        </CustomColumn>
-
-        <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='1rem'>
+        <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='1rem'>
           <ButtonRow>
             <Button onClick={() => setCurrentCode(originalCode)}>최종 코드</Button>
             <Button onClick={handleToggleCode}>다른 풀이(1)</Button>
             {/* 다른 풀이가 추가될수록 버튼이 늘어나야 한다 */}
           </ButtonRow>
 
+          {/* 서버로부터 사용자가 제출한 코드들을 받아와서 띄우는 부분 */}
           <CodeContainer>
             {currentCode}
           </CodeContainer>
@@ -210,7 +199,7 @@ print(count)
           <CustomFont color='black' font='1rem'>이러쿵저러쿵 너무 어려웠엉</CustomFont>
         </ContentContainer>
 
-        <CustomRow width='100%' alignItems='center' justifyContent='flex-end' gap='1rem'>
+        <CustomRow width='90%' alignItems='center' justifyContent='flex-end' gap='1rem'>
           <Button onClick={() => navigate('/writecodepage')}>수정(제출)하기</Button>
           <Button onClick={() => window.location.href = 'https://www.acmicpc.net/'}>백준으로</Button>
         </CustomRow>
