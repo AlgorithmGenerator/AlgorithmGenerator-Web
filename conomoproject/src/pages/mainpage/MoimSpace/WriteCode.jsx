@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import CustomColumn from '../../../components/container/CustomColumn';
@@ -44,6 +44,7 @@ const CodeContainer = styled.div`
   margin-top: 1rem;
   white-space: pre-wrap;
   width: 100%;
+  transition: all 0.5s ease; /* 부드러운 전환을 위한 애니메이션 */
 
   /* 스크롤바 스타일 */
   &::-webkit-scrollbar {
@@ -81,9 +82,27 @@ const ContentContainer = styled.div`
 
 const ButtonRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1rem;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  overflow-x: auto; /* 가로 스크롤 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+
+  /* 스크롤바 스타일 */
+  &::-webkit-scrollbar {
+    height: 12px; /* 세로 스크롤바와의 높이 균형을 맞추기 위해 설정 */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #D9D9D9;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 1rem;
+  }
 `;
 
 const Button = styled.button`
@@ -102,10 +121,7 @@ const Button = styled.button`
 const WriteCodePage = () => {
     const navigate = useNavigate();
 
-    const codeData = {
-        title: '코테 제목1',
-        content: '코테 본문1',
-        code: `
+    const originalCode = `
 N = int(input())
 words = [input() for _ in range(N)]
 
@@ -123,9 +139,35 @@ for word in words:
         count += 1
 
 print(count)
-    `,
-        imagePath: 'ex_certificateImg.png',
-        goodPoints: '이러쿵저러쿵 너무 어려웠엉',
+  `;
+
+    const alternativeCode = `
+word = input()
+croatia = ["c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="]
+count, i = 0, 0
+
+while i < len(word):
+    for now in croatia:
+        if word[i:i+len(now)] == now:
+            i += len(now)
+            break
+    else:
+        i += 1
+        count += 1
+
+print(count)
+  `;
+
+    const [currentCode, setCurrentCode] = useState(originalCode);
+    const [isOriginalCode, setIsOriginalCode] = useState(true);
+
+    const handleToggleCode = () => {
+        if (isOriginalCode) {
+            setCurrentCode(alternativeCode);
+        } else {
+            setCurrentCode(originalCode);
+        }
+        setIsOriginalCode(!isOriginalCode);
     };
 
     return (
@@ -136,7 +178,7 @@ print(count)
                         <CustomFont color='black' font='2rem' fontWeight='bold'>문제 제목</CustomFont>
                     </CustomRow>
                     <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                        <CustomFont color='black' font='1.5rem'>{codeData.title}</CustomFont>
+                        <CustomFont color='black' font='1.5rem'>코테 제목1</CustomFont>
                     </CustomRow>
                 </CustomColumn>
 
@@ -145,25 +187,27 @@ print(count)
                         <CustomFont color='black' fontWeight='bold' font='2rem'>문제 설명</CustomFont>
                     </CustomRow>
                     <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                        <CustomFont color='black' font='0.8rem'>{codeData.content}</CustomFont>
+                        <CustomFont color='black' font='1rem'>코테 본문1</CustomFont>
                     </CustomRow>
                 </CustomColumn>
 
                 <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='1rem'>
-                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start' gap='1rem'>
-                        <CustomFont color='black' fontWeight='bold' font='1.5rem'>내 코드</CustomFont>
-                    </CustomRow>
+                    <ButtonRow>
+                        <Button onClick={() => setCurrentCode(originalCode)}>최종 코드</Button>
+                        <Button onClick={handleToggleCode}>다른 풀이(1)</Button>
+                        {/* 다른 풀이가 추가될수록 버튼이 늘어나야 한다 */}
+                    </ButtonRow>
 
                     <CodeContainer>
-                        {codeData.code}
+                        {currentCode}
                     </CodeContainer>
                 </CustomColumn>
 
-                <ImageContainer src={codeData.imagePath} alt="증빙 이미지" />
+                <ImageContainer src={'ex_certificateImg.png'} alt="증빙 이미지" />
 
                 <ContentContainer>
                     <CustomFont color='black' font='1.2rem' fontWeight='bold'>느낀 점</CustomFont>
-                    <CustomFont color='black' font='1rem'>{codeData.goodPoints}</CustomFont>
+                    <CustomFont color='black' font='1rem'>좋았던 점</CustomFont>
                 </ContentContainer>
 
                 <CustomRow width='100%' alignItems='center' justifyContent='flex-end' gap='1rem'>
