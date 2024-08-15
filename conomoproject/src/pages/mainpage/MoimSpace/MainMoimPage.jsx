@@ -92,6 +92,7 @@ border-radius: 0.5rem;
 padding: 0.4rem;
 
 width: 4rem;
+cursor: pointer;
 `;
 
 const MainMoimPage = () => {
@@ -103,11 +104,11 @@ const MainMoimPage = () => {
     }
 
     const submit = () => {
-        navigate('/submitpage'); // 답안 제출하기 페이지 
+        navigate('/submitcodepage'); // 답안 제출하기 페이지 
     }
 
     const history = () => {
-        navigate('/historypage'); // 팀원별 제출기록 보기 페이지 
+        navigate('/memberhistorypage'); // 팀원별 제출기록 보기 페이지 
     }
 
     const [moimnumber, setMoimnumber] = useState(() => {

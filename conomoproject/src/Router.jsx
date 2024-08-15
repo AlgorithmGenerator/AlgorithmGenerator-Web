@@ -7,6 +7,8 @@ import SignupPage from './components/header/signup';
 import MyPage from './components/header/mypage';
 import MainMoimPage from './pages/mainpage/MoimSpace/MainMoimPage';
 import ManageMoimPage from './pages/mainpage/MoimSpace/managemoim/managemoimpage';
+import MemberHistoryPage from './pages/mainpage/MoimSpace/MemberHistory';
+import SubmitCodePage from './pages/mainpage/MoimSpace/SubmitCode';
 
 const AppRouter = () => {
     return (
@@ -19,6 +21,8 @@ const AppRouter = () => {
                     <Route path='/mypage' element={<MyPage />} />
                     <Route path='/mainmoimpage' element={<MainMoimPage />} />
                     <Route path='/managemoimpage' element={<ManageMoimPage />} />
+                    <Route path='/memberhistorypage' element={<MemberHistoryPage />} />
+                    <Route path='/submitcodepage' element={<SubmitCodePage />} />
                 </Route>
             </Routes>
         </Router>
