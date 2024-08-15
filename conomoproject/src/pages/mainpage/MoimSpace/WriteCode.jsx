@@ -25,14 +25,6 @@ const PageContainer = styled(ContainerCenter)`
   padding: 2rem;
 `;
 
-const TitleRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 1.5rem;
-  font-weight: bold;
-`;
-
 const CodeContainer = styled.textarea`
   background-color: #1e1e1e;
   color: white;
@@ -106,14 +98,15 @@ const Button = styled.button`
   padding: 1rem;
   border: none;
   border-radius: 8px;
-  background-color: #ccc;
+  background-color: ${({ isSelected }) => (isSelected ? ' #9ACBFF' : '#D9D9D9')}; // 선택된 버튼은 파란색. 기본 회색
   cursor: pointer;
   font-size: 1rem;
 
   &:hover {
-    background-color: #bbb;
+    background-color: ${({ isSelected }) => (isSelected ? '#5FACFF' : '#bbb')};
   }
 `;
+
 
 const ModalBackground = styled.div`
   position: fixed;
@@ -249,6 +242,7 @@ const WriteCodePage = () => {
                                 setCurrentCode(solution);
                                 setIsAddingNewSolution(false); // 기존 풀이 선택 시 새로운 풀이 추가 상태 해제
                             }}
+                            isSelected={selectedSolution === index} // 선택된 풀이(n) 버튼의 배경색을 파란색으로 설정
                         >
                             {finalSolutionIndex === index ? '최종풀이' : `풀이(${index + 1})`}
                         </Button>
@@ -285,13 +279,29 @@ const WriteCodePage = () => {
                                 onChange={handleImageChange}
                             />
                             <label htmlFor="image-upload" style={{ cursor: 'pointer' }}>+</label>
-                            <CustomFont color='black' font='1rem'>최종코드 성공 인증 이미지 첨부하기</CustomFont>
+                            <CustomFont color='#D9D9D9' font='1rem' fontWeight='bold'>최종코드 성공 인증 이미지 첨부하기</CustomFont>
                         </PlaceholderImageContainer>
                     )}
                 </CustomRow>
 
                 <ContentContainer>
-                    <textarea placeholder="느낀 점을 여기에 입력하세요" style={{ width: '100%', height: '10vh', borderRadius: '8px', padding: '1rem' }} />
+                    <textarea
+                        placeholder="느낀 점, 배운 점을 기록하세요."
+                        style={{
+                            width: '100%',
+                            height: '10vh',
+                            borderRadius: '0.5rem',
+                            padding: '1rem',
+                            border: '1px solid black',
+                            fontSize: '1rem',
+                            color: 'black',
+                            '::placeholder': {
+                                color: '#D9D9D9',
+                                fontSize: '1rem',
+                            },
+                        }}
+                    />
+
                 </ContentContainer>
 
                 <CustomRow width='90%' alignItems='center' justifyContent='flex-end'>
