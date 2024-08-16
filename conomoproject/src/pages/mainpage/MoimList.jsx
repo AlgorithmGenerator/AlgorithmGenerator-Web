@@ -185,7 +185,7 @@ const MoimList = () => {
                         style={{ cursor: 'pointer' }}
                     />
                     <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                        <CustomFont color='black' font='1rem'>
+                        <CustomFont color='white' font='1rem'>
                             {component.text}
                         </CustomFont>
                     </CustomRow>

@@ -16,8 +16,9 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: white;
+  background-color: #2C2C2C;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 `;
 
 const Button = styled.button`
