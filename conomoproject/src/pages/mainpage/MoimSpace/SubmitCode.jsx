@@ -23,7 +23,7 @@ const PageContainer = styled(ContainerCenter)`
   justify-content: flex-start;
   gap: 4rem;
   position: relative;
-  background-color: white;
+  background-color: #2C2C2C;
   padding-bottom: 5vh;
 `;
 
@@ -45,12 +45,12 @@ const CodeContainer = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #D9D9D9;
+    background-color: #AFAFAF;
     border-radius: 1rem;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
+    background-color: #383838;
     border-radius: 1rem;
   }
 `;
@@ -67,10 +67,11 @@ const ButtonContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 30vh;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 8px;
+  background-color: transparent;
+  border: 5px solid #383838;
+  border-radius: 5px;
   cursor: pointer;
+  margin-top: 1rem;
 `;
 
 const DetailButton = styled.button`
@@ -78,7 +79,7 @@ const DetailButton = styled.button`
   margin-top: 1rem;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #383838;
   color: white;
   cursor: pointer;
 
@@ -89,6 +90,13 @@ const DetailButton = styled.button`
 
 const SubmitCodePage = () => {
   const navigate = useNavigate();
+
+  const problemTitles = [
+    '1364번 | 설탕 나르기',
+    '1020번 | 평범한 배낭',
+    '1633번 | 하노이탑',
+    '1445번 | 가장 긴 증가하는 부분 수열',
+  ];
 
   const codeBlocks = [
     `N = int(input())
@@ -129,13 +137,21 @@ print(count)`,
   return (
     <ContainerCenter>
       <PageContainer>
-        <CustomRow width='80%' alignItems='center' justifyContent='flex-start'>
-          <CustomFont color='black' font='2rem' fontWeight='bold'>제출내역</CustomFont>
-        </CustomRow>
+        <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='1rem'>
+          <CustomColumn width='80%' alignItems='flex-start' justifyContent='center' gap='1rem'>
+            <CustomFont color='#AFAFAF' font='1rem'>코드 제출 마감까지 남은 시간은</CustomFont>
+            <CustomFont color='white' font='2rem'>3일 16시간 36분</CustomFont>
+          </CustomColumn>
+
+          <CustomColumn width='80%' alignItems='flex-end' justifyContent='center' gap='0'>
+            <CustomFont color='#AFAFAF' font='0.8rem'>최종코드로 결정된 코드만 보입니다.</CustomFont>
+            <CustomFont color='#AFAFAF' font='0.8rem'>상세보기에서 다른 풀이를 확인하실 수 있습니다.</CustomFont>
+          </CustomColumn>
+        </CustomColumn>
 
         {codeBlocks.map((code, index) => (
           <CodeBlock key={index}>
-            <CustomFont color='black' font='1.5rem'>{index + 1}번</CustomFont>
+            <CustomFont color='white' font='1.5rem'>{problemTitles[index]}</CustomFont>
             {code ? (
               <>
                 <CodeContainer>
@@ -147,8 +163,8 @@ print(count)`,
               </>
             ) : (
               <ButtonContainer onClick={() => navigate('/writecodepage')}>
-                <CustomFont color='black' font='2rem' fontWeight='bold'>+</CustomFont>
-                <CustomFont color='black' font='1rem'>제출하기</CustomFont>
+                <CustomFont color='#AFAFAF' font='2rem' fontWeight='bold'>+</CustomFont>
+                <CustomFont color='#AFAFAF' font='1rem'>제출하기</CustomFont>
               </ButtonContainer>
             )}
           </CodeBlock>

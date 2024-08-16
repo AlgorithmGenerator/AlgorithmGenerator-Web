@@ -39,7 +39,7 @@ const WeeklyQuiz = () => {
     const navigate = useNavigate();
 
     const history = () => {
-        navigate('/memberhistorypage'); // 팀원별 제출기록 보기 페이지 
+        navigate('/submitcodepage'); // 내 답안 제출하러 가기 페이지로 이동
     }
 
     return (
