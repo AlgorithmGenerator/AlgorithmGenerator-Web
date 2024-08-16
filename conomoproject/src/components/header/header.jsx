@@ -56,9 +56,6 @@ export default function Header() {
                     <Button onClick={GoLogin}>
                         <CustomFont color='#626262' font='1rem'>LOGIN</CustomFont>
                     </Button>
-                    <Button onClick={GoMy}>
-                        <CustomFont color='#626262' font='1rem'>MY</CustomFont>
-                    </Button>
                 </CustomRow>
             </CustomRow>
         </HeaderContainer>
