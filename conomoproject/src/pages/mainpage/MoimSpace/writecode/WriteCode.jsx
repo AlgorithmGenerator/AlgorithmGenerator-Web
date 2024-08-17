@@ -24,10 +24,11 @@ const PageContainer = styled(ContainerCenter)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 6rem;
   position: relative;
-  background-color: white;
-  padding: 2rem;
+  background-color: #2C2C2C;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 `;
 
 const CodeContainer = styled.textarea`
@@ -57,17 +58,16 @@ const PlaceholderImageContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #d9d9d9;
+  border: 1px dashed #AFAFAF;
   color: #d9d9d9;
   font-size: 3rem;
-  margin-top: 2rem;
 `;
 
 const ContentContainer = styled.div`
-  background-color: #f1f1f1;
+  background-color: #383838;
   padding: 1rem;
   border-radius: 8px;
-  width: 90%;
+  width: 100%;
   gap: 2rem;
   display: flex;
   flex-direction: column;
@@ -75,11 +75,17 @@ const ContentContainer = styled.div`
   justify-content: center;
 `;
 
+const Divider = styled.div`
+background-color: #828282;
+width: 100%;
+height: 1px;
+`;
+
 const ButtonRow = styled.div`
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
-  width: 90%;
+  width: 100%;
   margin-top: 1rem;
   overflow-x: auto;
   white-space: nowrap;
@@ -102,13 +108,16 @@ const ButtonRow = styled.div`
 const Button = styled.button`
   padding: 1rem;
   border: none;
-  border-radius: 8px;
-  background-color: ${({ isSelected }) => (isSelected ? ' #9ACBFF' : '#D9D9D9')}; // 선택된 버튼은 파란색. 기본 회색
+  border-radius: 5px;
+  background-color: ${({ isSelected }) => (isSelected ? ' #AFAFAF' : '#383838')}; // 선택된 버튼은 파란색. 기본 회색
   cursor: pointer;
   font-size: 1rem;
 
+  transition: opacity 0.3s ease;
+
   &:hover {
-    background-color: ${({ isSelected }) => (isSelected ? '#5FACFF' : '#bbb')};
+    opacity: 0.6;
+    // background-color: ${({ isSelected }) => (isSelected ? '#5FACFF' : '#bbb')};
   }
 `;
 
@@ -220,81 +229,114 @@ const WriteCodePage = () => {
         <ContainerCenter>
             <PageContainer>
                 <ProblemBanner />
-
-                <ButtonRow>
-                    <Button onClick={handleAddSolution}>+ 풀이추가</Button>
-                    {solutions.map((solution, index) => (
-                        <Button
-                            key={index}
-                            onClick={() => {
-                                setSelectedSolution(index);
-                                setCurrentCode(solution);
-                                setIsAddingNewSolution(false); // 기존 풀이 선택 시 새로운 풀이 추가 상태 해제
-                            }}
-                            isSelected={selectedSolution === index} // 선택된 풀이(n) 버튼의 배경색을 파란색으로 설정
-                        >
-                            {finalSolutionIndex === index ? '최종풀이' : `풀이(${index + 1})`}
+                <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='0.5rem'>
+                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+                        <CustomColumn alignItems='center' justifyContent='center' gap='0'>
+                            <CustomFont color='#828282' fontWeight='bold' font='1.5rem'>소스코드 제출</CustomFont>
+                            <Divider />
+                        </CustomColumn>
+                    </CustomRow>
+                    <ButtonRow>
+                        <Button onClick={handleAddSolution}>
+                            <CustomFont color='white' font='1rem' fontWeight='bold'>+ 풀이추가</CustomFont>
                         </Button>
-                    ))}
-                </ButtonRow>
+                        {solutions.map((solution, index) => (
+                            <Button
+                                key={index}
+                                onClick={() => {
+                                    setSelectedSolution(index);
+                                    setCurrentCode(solution);
+                                    setIsAddingNewSolution(false); // 기존 풀이 선택 시 새로운 풀이 추가 상태 해제
+                                }}
+                                isSelected={selectedSolution === index} // 선택된 풀이(n) 버튼의 배경색을 파란색으로 설정
+                            >
+                                <CustomFont color='white' font='1rem'>
+                                    {finalSolutionIndex === index ? '최종풀이' : `풀이(${index + 1})`}
+                                </CustomFont>
+                            </Button>
+                        ))}
+                    </ButtonRow>
+                    {selectedSolution !== null && (
+                        <CustomColumn width='100%' alignItems='center' justifyContent='center'>
 
-                {selectedSolution !== null && (
-                    <CustomColumn width='90%' alignItems='center' justifyContent='center'>
-
-                        <CodeContainer
-                            value={currentCode}
-                            onChange={(e) => setCurrentCode(e.target.value)}
-                            placeholder="여기에 코드를 입력하세요"
-                        />
-                        <CustomRow width='100%' alignItems='center' justifyContent='flex-end' gap='1rem'>
-                            <Button onClick={handleSaveSolution}>풀이저장/수정</Button>
-                            {!isAddingNewSolution && (
-                                <Button onClick={handleSetAsFinalSolution}>최종코드로 결정하기</Button>
-                            )}
-                        </CustomRow>
-                    </CustomColumn>
-                )}
-
-                <CustomRow width='90%' alignItems='center' justifyContent='center'>
-                    {imageUploaded ? (
-                        <ImageContainer src={imgSrc} id="img-preview" alt="증빙 이미지" />
-                    ) : (
-                        <PlaceholderImageContainer>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                style={{ display: 'none' }}
-                                id="image-upload"
-                                onChange={handleImageChange}
+                            <CodeContainer
+                                value={currentCode}
+                                onChange={(e) => setCurrentCode(e.target.value)}
+                                placeholder="여기에 코드를 입력하세요"
                             />
-                            <label htmlFor="image-upload" style={{ cursor: 'pointer' }}>+</label>
-                            <CustomFont color='#D9D9D9' font='1rem' fontWeight='bold'>최종코드 성공 인증 이미지 첨부하기</CustomFont>
-                        </PlaceholderImageContainer>
+                            <CustomRow width='100%' alignItems='center' justifyContent='flex-end' gap='1rem'>
+                                <Button onClick={handleSaveSolution}>
+                                    <CustomFont color='white' font='1rem'>풀이저장/수정</CustomFont>
+                                </Button>
+                                {!isAddingNewSolution && (
+                                    <Button onClick={handleSetAsFinalSolution}>
+                                        <CustomFont color='white' font='1rem'>최종코드로 결정하기</CustomFont>
+                                    </Button>
+                                )}
+                            </CustomRow>
+                        </CustomColumn>
                     )}
-                </CustomRow>
+                </CustomColumn>
 
-                <ContentContainer>
-                    <textarea
-                        placeholder="느낀 점, 배운 점을 기록하세요."
-                        style={{
-                            width: '100%',
-                            height: '10vh',
-                            borderRadius: '0.5rem',
-                            padding: '1rem',
-                            border: '1px solid black',
-                            fontSize: '1rem',
-                            color: 'black',
-                            '::placeholder': {
-                                color: '#D9D9D9',
+                <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='0.5rem'>
+                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+                        <CustomColumn alignItems='center' justifyContent='center' gap='0'>
+                            <CustomFont color='#828282' fontWeight='bold' font='1.5rem'>코드 통과 이미지 첨부</CustomFont>
+                            <Divider />
+                        </CustomColumn>
+                    </CustomRow>
+                    <CustomRow width='100%' alignItems='center' justifyContent='center'>
+                        {imageUploaded ? (
+                            <ImageContainer src={imgSrc} id="img-preview" alt="증빙 이미지" />
+                        ) : (
+                            <PlaceholderImageContainer>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    style={{ display: 'none' }}
+                                    id="image-upload"
+                                    onChange={handleImageChange}
+                                />
+                                <label htmlFor="image-upload" style={{ cursor: 'pointer' }}>+</label>
+                                <CustomFont color='#AFAFAF' font='1rem' fontWeight='bold'>최종코드 성공 인증 이미지 첨부하기</CustomFont>
+                            </PlaceholderImageContainer>
+                        )}
+                    </CustomRow>
+                </CustomColumn>
+
+                <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='0.5rem'>
+                    <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+                        <CustomColumn alignItems='center' justifyContent='center' gap='0'>
+                            <CustomFont color='#828282' fontWeight='bold' font='1.5rem'>느낀 점/배운 점</CustomFont>
+                            <Divider />
+                        </CustomColumn>
+                    </CustomRow>
+                    <ContentContainer>
+                        <textarea
+                            placeholder="필수 필드는 아닙니다 :)"
+                            style={{
+                                width: '100%',
+
+                                height: '10vh',
+                                borderRadius: '0.5rem',
+                                padding: '1rem',
+                                border: '1px solid black',
                                 fontSize: '1rem',
-                            },
-                        }}
-                    />
+                                color: 'black',
+                                '::placeholder': {
+                                    color: '#D9D9D9',
+                                    fontSize: '1rem',
+                                },
+                            }}
+                        />
 
-                </ContentContainer>
+                    </ContentContainer>
+                </CustomColumn>
 
                 <CustomRow width='90%' alignItems='center' justifyContent='flex-end'>
-                    <Button onClick={handleSubmit}>코드 제출/수정</Button>
+                    <Button onClick={handleSubmit}>
+                        <CustomFont color='white' font='1rem' fontWeight='bold'>코드제출/수정</CustomFont>
+                    </Button>
                 </CustomRow>
             </PageContainer>
 

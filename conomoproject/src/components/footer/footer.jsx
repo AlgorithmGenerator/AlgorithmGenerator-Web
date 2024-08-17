@@ -11,8 +11,7 @@ const NaviContainer = styled.footer`
   align-items: center;
   width: 100%;
   height: 10vh;
-  background-color: #D9D9D9;
-  // position: fixed;
+  background-color: #383838;
   bottom: 0;
   left: 0;
   pointer-events: auto;
@@ -23,7 +22,7 @@ const Footer = () => {
 
     return (
         <NaviContainer>
-            <CustomFont color='black' font='1rem' fontWeight='bold'>여기는 푸터</CustomFont>
+            <CustomFont color='black' font='1rem' fontWeight='bold'>MADE BY HUFS GLOBAL LION CONOMO.</CustomFont>
         </NaviContainer>
     );
 };

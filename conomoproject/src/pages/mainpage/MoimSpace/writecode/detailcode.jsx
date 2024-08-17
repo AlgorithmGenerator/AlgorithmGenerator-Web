@@ -24,9 +24,9 @@ const PageContainer = styled(ContainerCenter)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 6rem;
   position: relative;
-  background-color: white;
+  background-color: #2C2C2C;
   padding: 2rem;
 `;
 
@@ -68,21 +68,21 @@ const CodeContainer = styled.div`
 `;
 
 const ImageContainer = styled.img`
-  width: 90%;
-  margin-top: 2rem;
+  width: 100%;
 `;
 
 const ContentContainer = styled.div`
-  background-color: #f1f1f1;
+  background-color: #383838;
   padding: 1rem;
   border-radius: 8px;
-  width: 90%;
+  width: 100%;
+  height: 10rem;
   gap: 2rem;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 const ButtonRow = styled.div`
@@ -113,14 +113,22 @@ const ButtonRow = styled.div`
 const Button = styled.button`
   padding: 1rem;
   border: none;
-  border-radius: 8px;
-  background-color: #ccc;
+  border-radius: 5px;
+  background-color: #383838;
   cursor: pointer;
   font-size: 1rem;
 
-  &:hover {
-    background-color: #bbb;
-  }
+  transition: opacity 0.3s ease;
+
+&:hover {
+  opacity: 0.6;
+}
+`;
+
+const Divider = styled.div`
+background-color: #828282;
+width: 100%;
+height: 1px;
 `;
 
 const DetailCodePage = () => {
@@ -180,29 +188,58 @@ print(count)
       <PageContainer>
         <ProblemBanner />
 
-        <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='1rem'>
-          <ButtonRow>
-            <Button onClick={() => setCurrentCode(originalCode)}>최종 코드</Button>
-            <Button onClick={handleToggleCode}>다른 풀이(1)</Button>
-            {/* 다른 풀이가 추가될수록 버튼이 늘어나야 한다 */}
-          </ButtonRow>
+        <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='0.5rem'>
+          <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+            <CustomColumn alignItems='center' justifyContent='center' gap='0'>
+              <CustomFont color='#828282' fontWeight='bold' font='1.5rem'>소스코드 제출</CustomFont>
+              <Divider />
+            </CustomColumn>
+          </CustomRow>
 
-          {/* 서버로부터 사용자가 제출한 코드들을 받아와서 띄우는 부분 */}
-          <CodeContainer>
-            {currentCode}
-          </CodeContainer>
+          <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='1rem'>
+            <ButtonRow>
+              <Button onClick={() => setCurrentCode(originalCode)}>
+                <CustomFont color='white' font='1rem'>최종코드</CustomFont>
+              </Button>
+              <Button onClick={handleToggleCode}>
+                <CustomFont color='white' font='1rem'>다른풀이(1)</CustomFont>
+              </Button>
+              {/* 다른 풀이가 추가될수록 버튼이 늘어나야 한다 */}
+            </ButtonRow>
+
+            {/* 서버로부터 사용자가 제출한 코드들을 받아와서 띄우는 부분 */}
+            <CodeContainer>
+              {currentCode}
+            </CodeContainer>
+          </CustomColumn>
         </CustomColumn>
 
-        <ImageContainer src={'ex_certificateImg.png'} alt="증빙 이미지" />
+        <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='0.5rem'>
+          <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+            <CustomColumn alignItems='center' justifyContent='center' gap='0'>
+              <CustomFont color='#828282' fontWeight='bold' font='1.5rem'>코드 통과 인증 이미지</CustomFont>
+              <Divider />
+            </CustomColumn>
+          </CustomRow>
+          <ImageContainer src={'ex_certificateImg.png'} alt="증빙 이미지" />
+        </CustomColumn>
 
-        <ContentContainer>
-          <CustomFont color='black' font='1.2rem' fontWeight='bold'>느낀 점</CustomFont>
-          <CustomFont color='black' font='1rem'>이러쿵저러쿵 너무 어려웠엉</CustomFont>
-        </ContentContainer>
+        <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='0.5rem'>
+          <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
+            <CustomColumn alignItems='center' justifyContent='center' gap='0'>
+              <CustomFont color='#828282' fontWeight='bold' font='1.5rem'>느낀 점/배운 점</CustomFont>
+              <Divider />
+            </CustomColumn>
+          </CustomRow>
+          <ContentContainer>
+            <CustomFont color='white' font='1rem'>이러쿵저러쿵 너무 어려웠엉</CustomFont>
+          </ContentContainer>
+        </CustomColumn>
 
         <CustomRow width='90%' alignItems='center' justifyContent='flex-end' gap='1rem'>
-          <Button onClick={() => navigate('/writecodepage')}>수정(제출)하기</Button>
-          <Button onClick={() => window.location.href = 'https://www.acmicpc.net/'}>백준으로</Button>
+          <Button onClick={() => navigate('/writecodepage')}>
+            <CustomFont color='white' font='1rem' fontWeight='bold'>수정/제출하기</CustomFont>
+          </Button>
         </CustomRow>
       </PageContainer>
     </ContainerCenter>

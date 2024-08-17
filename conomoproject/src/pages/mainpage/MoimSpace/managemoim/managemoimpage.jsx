@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CustomColumn from '../../../../components/container/CustomColumn';
-import CustomRow from '../../../../components/container/CustomRow';
-import CustomFont from '../../../../components/container/CustomFont';
-import StyledImg from '../../../../components/container/StyledImg';
 
-import MoimProfile from './moimprofile';
-import MoimOnOff from './moimonoff';
-import MakePeroid from './makeperiod';
-import MakeProblem from './makeproblem';
+import ManageMoimBanner from './ManageMoimBanner';
+import ManageRandomQuiz from './ManageRandomQuiz';
+import ManageOnOff from './ManageOnOff';
 
 // 피그마의 '화면10) 모임 관리 페이지'에 해당함 
 
@@ -20,6 +16,7 @@ const Container = styled.div`
   min-height: 100vh;
   padding: 2rem;
   box-sizing: border-box;
+  background-color: #2C2C2C;
 `;
 
 const Button = styled.button`
@@ -77,28 +74,10 @@ const ManageMoimPage = () => {
 
     return (
         <Container>
-            <CustomColumn width='60%' alignItems='center' justifyContent='center' gap='2.5rem'>
-                <CustomRow width='100%' alignItems='center' justifyContent='flex-start'>
-                    <CustomFont color='black' font='2rem' fontWeight='bold'>모임 관리</CustomFont>
-                </CustomRow>
-
-                <CustomColumn width='100%' alignItems='center' justifyContent='center' gap='0.5rem'>
-                    <CustomRow width='100%' alignItems='center' justifyContent='space-between' gap='1rem'>
-                        <MoimProfile />
-                        <MakeProblem
-                            onOpenModal={handleOpenModal}
-                            onCloseModal={handleCloseModal}
-                        />
-                    </CustomRow>
-
-                    <CustomRow width='100%' alignItems='center' justifyContent='space-between' gap='1rem'>
-                        <MakePeroid
-                            onOpenModal={handleOpenModal}
-                            onCloseModal={handleCloseModal}
-                        />
-                        <MoimOnOff />
-                    </CustomRow>
-                </CustomColumn>
+            <CustomColumn width='90%' alignItems='center' justifyContent='center' gap='2.5rem'>
+                <ManageMoimBanner />
+                <ManageRandomQuiz />
+                <ManageOnOff />
 
                 {isModalOpen && (
                     <ModalBackground>

@@ -9,7 +9,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 10vh;
+  padding-top: 6vh;
+  background-color: transparent;
 `;
 
 const Main = styled.main`

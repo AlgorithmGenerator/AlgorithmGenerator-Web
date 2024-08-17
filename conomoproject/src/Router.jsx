@@ -4,7 +4,7 @@ import Layout from './components/Layout';
 import HomePage from './pages/mainpage/mainpage';
 import LoginPage from './components/header/login';
 import SignupPage from './components/header/signup';
-import MyPage from './components/header/mypage';
+import MyPage from './components/header/mypage/mypage';
 import MainMoimPage from './pages/mainpage/MoimSpace/MainMoimPage';
 import ManageMoimPage from './pages/mainpage/MoimSpace/managemoim/managemoimpage';
 import MemberHistoryPage from './pages/mainpage/MoimSpace/MemberHistory';

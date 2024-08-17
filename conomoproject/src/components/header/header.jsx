@@ -16,8 +16,9 @@ const HeaderContainer = styled.header`
   justify-content: space-between;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: white;
+  background-color: #2C2C2C;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 999;
 `;
 
 const Button = styled.button`
@@ -54,9 +55,6 @@ export default function Header() {
                 <CustomRow width='100%' justifyContent='flex-end' gap='1rem'>
                     <Button onClick={GoLogin}>
                         <CustomFont color='#626262' font='1rem'>LOGIN</CustomFont>
-                    </Button>
-                    <Button onClick={GoMy}>
-                        <CustomFont color='#626262' font='1rem'>MY</CustomFont>
                     </Button>
                 </CustomRow>
             </CustomRow>
