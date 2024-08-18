@@ -40,10 +40,10 @@ const SignupPage = () => {
     const doneLogin = () => {
         if (!isButtonDisabled) {
             setShowModal(true);
-            setTimeout(() => {
+            /*setTimeout(() => {
                 setShowModal(false);
                 navigate('/loginpage');
-            }, 2000);
+            }, 2000);*/
         }
     }
 
@@ -72,7 +72,7 @@ const SignupPage = () => {
                     </ButtonRightContainerDuplication>
 
                     <PWInput value={pw} onChange={handlePwChange} />
-                    {!isPwValid && <ErrorMessage>비밀번호는 6글자 이상 11글자 미만, 특수문자 1개 이상, 숫자 1개 이상을 포함해야 합니다.</ErrorMessage>}
+                    {!isPwValid && <ErrorMessage>비밀번호는 6글자 이상 11글자 미만,<br /> 특수문자 1개 이상, 숫자 1개 이상을 포함해야 합니다.</ErrorMessage>}
 
                     <PW2Input value={pw2} onChange={handlePw2Change} />
                     {!isPwMatch && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
@@ -88,6 +88,7 @@ const SignupPage = () => {
                     <ModalBackground>
                         <Modal>
                             <CustomFont color='black' fontWeight='400' font='2.25rem' font-family='Inter'>회원가입이 완료되었습니다.</CustomFont>
+                            <ModalButton onClick={() => navigate('/loginpage')}>확인</ModalButton>
                         </Modal>
                     </ModalBackground>
                 )}
@@ -118,7 +119,7 @@ const SignUpSmallBoxContainer = styled.div`
     align-items: center;
     gap: 4rem;
     border-radius: 0.3125rem;
-    border: 1px #838383;
+    border: 1px solid #838383;
     background: #2C2C2C;
     height: 65vh;
     z-index: 1;
@@ -258,7 +259,7 @@ const PWInput = styled.input.attrs({
 `;
 
 const PW2Input = styled.input.attrs({
-    placeholder: '재입력',
+    placeholder: 'PW 재입력',
 })`
     width: 100%;
     height: 3.5rem;
@@ -300,6 +301,7 @@ const ModalBackground = styled.div`
 
 const Modal = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 46.5rem;
@@ -308,7 +310,30 @@ const Modal = styled.div`
     padding: 2rem;
     border-radius: 0.625rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    gap: 3rem;
 `;
+
+const ModalButton = styled.div`
+    display: flex;
+    width: 15.5625rem;
+    height: 4.375rem;
+    flex-direction: column;
+    justify-content: center;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 2.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 19.1875rem;
+    height: 4.375rem;
+    border-radius: 0.625rem;
+    background: #383838;
+
+    cursor: pointer;
+
+`
 
 const SignUpFont = styled.div`
     color: #FFF;

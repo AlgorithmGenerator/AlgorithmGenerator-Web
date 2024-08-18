@@ -94,7 +94,7 @@ const LoginSmallBoxContainer = styled.div`
     align-items: center;
     gap: 4rem;
     border-radius: 0.3125rem;
-    border: 1px #838383;
+    border: 1px solid #838383;
     background: #2C2C2C;
     height: 65vh;
     z-index: 1;
