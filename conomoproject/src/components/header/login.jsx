@@ -42,7 +42,7 @@ const LoginPage = () => {
 
                 <Line />
 
-                <CustomColumn width='70%' alignItems='center' justifyContent='center' gap='0.5rem'>
+                <CustomColumn width='70%' alignItems='center' justifyContent='center' gap='1rem'>
                     <IDInput value={id} onChange={(e) => setId(e.target.value)} />
                     <PWInput value={pw} onChange={(e) => setPw(e.target.value)} />
 
@@ -109,6 +109,7 @@ const Button = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    cursor: pointer;
 `;
 
 const ButtonRightContainer = styled.div`
@@ -128,7 +129,7 @@ const Button2 = styled.button`
     height: 3.5rem;
     padding: 0.5rem;
     cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
-    margin-top: 8rem;
+    margin-top: 5rem;
 `;
 
 const IDInput = styled.input.attrs({
@@ -139,9 +140,8 @@ const IDInput = styled.input.attrs({
     border-radius: 0.3125rem;
     border: 1px solid #949494;
     background: rgba(217, 217, 217, 0.01);
-    padding: 0.5rem;
+    padding-left: 1.2rem;
     box-sizing: border-box;
-    margin-top: 0.5rem;
 
     color: #898989;
 
@@ -170,9 +170,8 @@ const PWInput = styled.input.attrs({
     border-radius: 0.3125rem;
     border: 1px solid #949494;
     background: rgba(217, 217, 217, 0.01);
-    padding: 0.5rem;
+    padding-left: 1.2rem;
     box-sizing: border-box;
-    margin-top: 0.5rem;
 
     color: #898989;
 
@@ -204,7 +203,7 @@ const ForgetId = styled.div`
     line-height: normal;
     text-decoration: underline;
     margin-top: 1rem;
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
 `;
 
 const ModalBackground = styled.div`
@@ -234,6 +233,7 @@ const LoginFont = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+
 `;
 
 const Line = styled.div`
