@@ -13,18 +13,36 @@ const SignupPage = () => {
     const [pw2, setPw2] = useState('');
     const [showModal, setShowModal] = useState(false);
 
-    const isButtonDisabled = name === '' || id === '' || pw === '' || pw2 === '';
+    const [isPwValid, setIsPwValid] = useState(true);
+    const [isPwMatch, setIsPwMatch] = useState(true);
 
-    const goSignup = () => {
-        navigate('/signuppage');
-    }
+    const isValidPassword = (password) => {
+        const lengthValid = password.length >= 6 && password.length < 11;
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const hasNumber = /[0-9]/.test(password);
+        return lengthValid && hasSpecialChar && hasNumber;
+    };
+
+    const handlePwChange = (e) => {
+        const value = e.target.value;
+        setPw(value);
+        setIsPwValid(isValidPassword(value));
+    };
+
+    const handlePw2Change = (e) => {
+        const value = e.target.value;
+        setPw2(value);
+        setIsPwMatch(value === pw);
+    };
+
+    const isButtonDisabled = name === '' || id === '' || pw === '' || pw2 === '' || !isPwValid || !isPwMatch;
 
     const doneLogin = () => {
         if (!isButtonDisabled) {
             setShowModal(true);
             setTimeout(() => {
                 setShowModal(false);
-                navigate('/');
+                navigate('/loginpage');
             }, 2000);
         }
     }
@@ -45,40 +63,31 @@ const SignupPage = () => {
                 <Line />
 
                 <CustomColumn width='70%' alignItems='center' justifyContent='center' gap='1rem'>
-                    
-                    {/* 이름 입력 */}
                     <NameInput value={name} onChange={(e) => setName(e.target.value)} />
 
-                    {/* 아이디 입력 */}
                     <IDInput value={id} onChange={(e) => setId(e.target.value)} />
 
-
-                    {/* 중복검사 버튼 */}
                     <ButtonRightContainerDuplication>
                         <DuplicationCheck>중복검사</DuplicationCheck>
                     </ButtonRightContainerDuplication>
 
+                    <PWInput value={pw} onChange={handlePwChange} />
+                    {!isPwValid && <ErrorMessage>비밀번호는 6글자 이상 11글자 미만, 특수문자 1개 이상, 숫자 1개 이상을 포함해야 합니다.</ErrorMessage>}
 
-
-                    {/* 비밀번호 입력 */}
-                    <PWInput value={pw} onChange={(e) => setPw(e.target.value)} />
-
-                    {/* 비밀번호 재입력 */}
-                    <PW2Input value={pw2} onChange={(e) => setPw2(e.target.value)} />
+                    <PW2Input value={pw2} onChange={handlePw2Change} />
+                    {!isPwMatch && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
 
                     <ButtonRightContainerSignUp>
                         <Button2 onClick={doneLogin} disabled={isButtonDisabled}>
                             <SignUpFont>회원가입</SignUpFont>
                         </Button2>
                     </ButtonRightContainerSignUp>
-
-
                 </CustomColumn>
 
                 {showModal && (
                     <ModalBackground>
                         <Modal>
-                            <CustomFont color='black' fontWeight='bold' font='1.2rem'>회원가입되었습니다!</CustomFont>
+                            <CustomFont color='black' fontWeight='400' font='2.25rem' font-family='Inter'>회원가입이 완료되었습니다.</CustomFont>
                         </Modal>
                     </ModalBackground>
                 )}
@@ -290,10 +299,15 @@ const ModalBackground = styled.div`
 `;
 
 const Modal = styled.div`
-  background-color: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46.5rem;
+    height: 16.25rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.625rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
 
 const SignUpFont = styled.div`
@@ -328,4 +342,11 @@ const Line = styled.div`
     background: #8A8A8A;
     width: 80%;
     height: 0.0625rem; // 1px
+`;
+
+const ErrorMessage = styled.div`
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-family: Inter;
 `;
